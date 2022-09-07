@@ -1,0 +1,40 @@
+
+    
+int isStackPermutation(int n,vector<int> &vec1 , vector<int> &vec2){
+        
+        
+        stack<int> st;
+        
+        int i=0;
+        int j=0;
+        
+        
+        
+        
+    while(i<n && j<n){
+                
+          
+          st.push(vec1[i]);
+          i++;
+                        
+            while(!st.empty() && st.top() == vec2[j]){
+                            
+                    st.pop();
+                    j++;
+                            
+            }
+            
+    }
+    
+    
+        
+        if(st.empty()){
+            return 1;
+            
+        }
+        
+    
+    return 0;
+    
+        
+    
