@@ -1,0 +1,54 @@
+
+class Solution{
+  public:
+  
+  void inorderStor(Node* root , vector<int> &vec){
+      
+      if(root == NULL){
+          return;
+      }
+      
+      inorderStor(root->left , vec);
+      
+      vec.push_back(root->data);
+      
+      inorderStor(root->right , vec);
+      
+      
+  }
+  
+  
+  void  postorderFix(Node* root , vector<int> &vec , int &i)
+{
+    if(root == NULL){
+        return;
+    }
+    
+    postorderFix(root->left , vec , i);
+    postorderFix(root->right , vec , i);
+    
+    root->data = vec[i++];
+    
+    
+    
+}
+  
+    void convertToMaxHeapUtil(Node* root)
+    {
+        if(root == NULL){
+            return;
+            
+        }
+        
+        vector<int> vec;
+        
+        inorderStor(root , vec);
+        
+        int i=0;
+        
+        postorderFix(root , vec , i);
+        
+        return;
+        
+    }    
+};
