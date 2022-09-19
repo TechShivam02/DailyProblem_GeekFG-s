@@ -1,0 +1,69 @@
+vector<int> leftSmaller(int n, int arr[]){
+
+        
+
+        vector<int> vec;
+
+        int min = INT_MAX;
+
+        stack<int> stk;
+
+     
+
+        for(int i=0;i<n;i++){
+
+         
+
+           if(i==0){
+
+               vec.push_back(-1);
+
+               stk.push(arr[i]);
+
+           }
+
+           
+
+           else{
+
+               
+
+               while(!stk.empty() && stk.top() >= arr[i]){
+
+                   stk.pop();
+
+               }
+
+               
+
+               if(!stk.empty()){
+
+                   vec.push_back(stk.top());
+
+                   stk.push(arr[i]);
+
+               }
+
+               
+
+               else{
+
+                   vec.push_back(-1);
+
+                   stk.push(arr[i]);
+
+               }
+
+
+
+           }
+
+
+
+    }
+
+   
+
+        return vec;
+
+    }
