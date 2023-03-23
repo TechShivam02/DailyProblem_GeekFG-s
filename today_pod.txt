@@ -1,0 +1,64 @@
+void solve(Node*ans,int &lind,vector<int>&sum2){
+        if(ans==NULL){
+            return;
+        }
+        if(ans->left==NULL && ans->right==NULL){
+            sum2.push_back(lind);
+        }
+        if(ans->left!=NULL){
+            lind=lind+ans->left->data;
+            solve(ans->left,lind,sum2);
+             lind=lind-ans->left->data;
+        }
+        
+        if(ans->right!=NULL){
+            lind=lind+ans->right->data;
+            solve(ans->right,lind,sum2);
+             lind=lind-ans->right->data;
+        }
+    }
+
+
+    void find(Node*root,int target,int &sum,Node*&ans,int &flag){
+    if(root==NULL){
+            return;
+        }
+        if(root->data==target){
+            ans=root;
+            flag=-1;
+            return ;
+        }
+        sum=sum+ root->data;
+        if(root->data <target){
+            find(root->right,target,sum,ans,flag);
+        }
+        else{
+            find(root->left,target,sum,ans,flag);
+        }
+        
+    }
+
+    int maxDifferenceBST(Node *root,int target){
+        // Code here
+        
+        
+        int sum=0;
+        vector<int>sum2;
+        int lind=0;
+        int flag=0;
+        int o=0;
+        int k=INT_MAX;
+        Node*ans=root;
+        find(root,target,sum,ans,flag);
+        if(flag==0){
+            return -1;
+        }
+        if(ans->left==NULL && ans->right==NULL){
+            return sum;
+        }
+        solve(ans,lind,sum2);
+        for(int i=0;i<sum2.size();i++){
+            k=min(k,sum2[i]);
+        }
+       return sum-k;
+    }
