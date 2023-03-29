@@ -1,0 +1,13 @@
+ long long s=0;
+       long long mn=1000000000000;
+       for(int i=0;i<N;i++){
+           s+=A[i];
+       }
+       for(int i=0;i<N;i++){
+           long long a=A[i];
+           long long n =N;
+           if(s<=(a*n)){
+               if(mn>A[i])mn=A[i];
+           }
+       }
+       return mn;
